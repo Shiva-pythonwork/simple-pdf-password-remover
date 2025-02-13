@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Password Remover</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow p-4">
+            <h2 class="text-center text-primary">Remove PDF Password</h2>
+            <form action="/remove_password" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">Select PDF:</label>
+                    <input type="file" name="pdf_file" class="form-control" accept=".pdf" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Enter Password:</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Remove Password</button>
+
+                <!-- Error message display -->
+                {% if error %}
+                <div class="alert alert-danger mt-3 text-center">
+                    {{ error }}
+                </div>
+                {% endif %}
+
+                <!-- Success message & Download button -->
+                {% if success %}
+                <div class="alert alert-success mt-3 text-center">
+                    {{ success }}
+                </div>
+                <div class="text-center mt-3">
+                    <a href="{{ file_path }}" class="btn btn-success" download>Download Unlocked PDF</a>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
