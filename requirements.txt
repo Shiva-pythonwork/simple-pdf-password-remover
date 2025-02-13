@@ -1,0 +1,4 @@
+flask
+PyPDF2
+Jinja2
+gunicorn
